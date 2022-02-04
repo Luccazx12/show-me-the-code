@@ -1,22 +1,21 @@
-import { getRepository } from 'typeorm'
-import { User } from '@modules/Users/infra/typeorm/entities/User'
-import AppError from '@shared/errors/AppError'
+import { getRepository } from 'typeorm';
+import { User } from '@modules/Users/infra/typeorm/entities/User';
+import AppError from '@shared/errors/AppError';
 
 export class GetByUsernameService {
   async execute(username: string) {
-    const repo = await getRepository(User)
-    username = username.toLowerCase()
+    const repo = await getRepository(User);
+    username = username.toLowerCase();
     const user = await repo.findOne({
       where: {
         username: username,
       },
-    })
+    });
 
     if (!user) {
-      throw new AppError('User does not exists!')
+      throw new AppError('User does not exists!');
     }
-    delete user.password
-    delete user.email
-    return user
+    delete user.password;
+    return user;
   }
 }

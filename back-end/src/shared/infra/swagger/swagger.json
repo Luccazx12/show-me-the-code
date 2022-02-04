@@ -18,15 +18,19 @@
     },
     {
       "name": "Users_auth",
-      "description": "Endpoints for adding pets to the directory"
+      "description": "Endpoints for getting information about Users with Authentication"
     },
     {
-      "name": "Products_auth",
-      "description": "Endpoints for updating pet information"
+      "name": "Tariffs_auth",
+      "description": "Endpoints for getting information about Tariffs with Authentication"
     },
     {
-      "name": "Categories_auth",
-      "description": "Endpoints for getting information about pets"
+      "name": "Plans_auth",
+      "description": "Endpoints for getting information about Plans with Authentication"
+    },
+    {
+      "name": "Roles_auth",
+      "description": "Endpoints for getting information about Roles with Authentication"
     },
     {
       "name": "Open Routes",
@@ -38,15 +42,7 @@
     },
     {
       "name": "Users",
-      "description": "Endpoints for adding pets to the directory"
-    },
-    {
-      "name": "Products",
-      "description": "Endpoints for updating pet information"
-    },
-    {
-      "name": "Categories",
-      "description": "Endpoints for getting information about pets"
+      "description": "Endpoints for getting information about Users"
     }
   ],
   "schemes": [
@@ -61,10 +57,10 @@
     }
   },
   "paths": {
-    "/categories": {
-      "post": {
+    "/plans/all": {
+      "get": {
         "tags": [
-          "Categories_auth"
+          "Plans_auth"
         ],
         "description": "",
         "consumes": [
@@ -73,31 +69,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User data.",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Canecas Brancas2"
-                },
-                "description": {
-                  "type": "string",
-                  "example": ""
-                },
-                "defaultPrice": {
-                  "type": "number",
-                  "example": 50
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {},
         "security": [
           {
@@ -108,66 +80,10 @@
         ]
       }
     },
-    "/categories/{id}": {
-      "put": {
-        "tags": [
-          "Categories_auth"
-        ],
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Category ID.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User data.",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": ""
-                },
-                "description": {
-                  "type": "string",
-                  "example": ""
-                },
-                "defaultPrice": {
-                  "type": "number",
-                  "example": 0
-                },
-                "activated": {
-                  "type": "boolean",
-                  "example": true
-                }
-              }
-            }
-          }
-        ],
-        "responses": {},
-        "security": [
-          {
-            "bearerAuth": [
-              {}
-            ]
-          }
-        ]
-      },
+    "/plans/{id}": {
       "delete": {
         "tags": [
-          "Categories_auth"
+          "Plans_auth"
         ],
         "description": "",
         "consumes": [
@@ -195,10 +111,10 @@
         ]
       }
     },
-    "/products": {
-      "post": {
+    "/roles/all": {
+      "get": {
         "tags": [
-          "Products_auth"
+          "Roles_auth"
         ],
         "description": "",
         "consumes": [
@@ -207,31 +123,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User data.",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": ""
-                },
-                "description": {
-                  "type": "string",
-                  "example": ""
-                },
-                "category_id": {
-                  "type": "string",
-                  "example": ""
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {},
         "security": [
           {
@@ -242,10 +134,10 @@
         ]
       }
     },
-    "/changeProduct/{id}": {
-      "put": {
+    "/tariffs/all": {
+      "get": {
         "tags": [
-          "Products_auth"
+          "Tariffs_auth"
         ],
         "description": "",
         "consumes": [
@@ -254,42 +146,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Product ID.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User data.",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": ""
-                },
-                "description": {
-                  "type": "string",
-                  "example": ""
-                },
-                "category_id": {
-                  "type": "string",
-                  "example": ""
-                },
-                "activated": {
-                  "type": "boolean",
-                  "example": true
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {},
         "security": [
           {
@@ -300,10 +157,10 @@
         ]
       }
     },
-    "/users": {
+    "/users/auth/signup": {
       "post": {
         "tags": [
-          "Users_auth"
+          "Users"
         ],
         "description": "",
         "consumes": [
@@ -329,20 +186,127 @@
                   "type": "string",
                   "example": "Luccazx12"
                 },
-                "password": {
-                  "type": "string",
-                  "example": "teste123@"
-                },
                 "email": {
                   "type": "string",
                   "example": "whatdogs1222@gmail.com"
                 },
-                "role_id": {
+                "password": {
                   "type": "string",
-                  "example": ""
+                  "example": "teste123@"
+                },
+                "state": {
+                  "type": "number",
+                  "example": 35
+                },
+                "city": {
+                  "type": "string",
+                  "example": "SP"
                 }
               }
             }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/users/auth/signin": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User data.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "mario-lucca@hotmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/users/create": {
+      "post": {
+        "tags": [
+          "Users_auth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "avatar",
+            "in": "formData",
+            "type": "file",
+            "required": true,
+            "description": "Some description..."
+          },
+          {
+            "name": "username",
+            "in": "formData",
+            "description": "User data.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "User data.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "User data.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "User data.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "role_id",
+            "in": "formData",
+            "description": "User data.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "User state.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "User city.",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {},
@@ -355,8 +319,8 @@
         ]
       }
     },
-    "/allUsers": {
-      "get": {
+    "/users/update/{username_path}": {
+      "put": {
         "tags": [
           "Users_auth"
         ],
@@ -367,7 +331,85 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "username_path",
+            "in": "path",
+            "description": "Username to be changed.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "in": "formData",
+            "type": "file",
+            "required": false,
+            "description": "Some description..."
+          },
+          {
+            "name": "username",
+            "in": "formData",
+            "description": "User username.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "User email.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "User name.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "User state.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "User city.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "description": "User bio.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "role_id",
+            "in": "formData",
+            "description": "User role.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "plan_id",
+            "in": "formData",
+            "description": "User plan.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "activated",
+            "in": "formData",
+            "description": "User activation. (use true or false)",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {},
         "security": [
           {
@@ -378,7 +420,7 @@
         ]
       }
     },
-    "/users/roles": {
+    "/users/all": {
       "get": {
         "tags": [
           "Users_auth"
@@ -432,39 +474,7 @@
         ]
       }
     },
-    "/allProducts": {
-      "get": {
-        "tags": [
-          "Products"
-        ],
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/allCategories": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/user/{username}": {
+    "/users/{username}": {
       "get": {
         "tags": [
           "Users"
@@ -483,86 +493,6 @@
             "required": true,
             "type": "string",
             "description": "User username."
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/auth/signup": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User data.",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Lucca"
-                },
-                "username": {
-                  "type": "string",
-                  "example": "Luccazx12"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "teste123@"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "whatdogs1222@gmail.com"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/auth/signin": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User data.",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string",
-                  "example": "mario-lucca@hotmail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "1234"
-                }
-              }
-            }
           }
         ],
         "responses": {}

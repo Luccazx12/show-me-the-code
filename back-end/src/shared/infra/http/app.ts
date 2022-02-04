@@ -10,8 +10,8 @@ import morgan from 'morgan';
 import fs from 'fs';
 
 import AppError from '@shared/errors/AppError';
-import routes from './routes/routes';
-import authRoutes from './routes/AuthRoutes';
+import uploadConfig from '@config/upload';
+import routes from './routes';
 
 class App {
   public express: express.Application;
@@ -50,7 +50,7 @@ class App {
     this.express.use('/docs', serve, setup(this.swaggerDocument, options));
 
     // Routes for controllers
-    this.express.use(routes, authRoutes);
+    this.express.use(routes);
 
     this.express.use(
       (
@@ -60,7 +60,8 @@ class App {
         next: NextFunction,
       ) => {
         if (err instanceof AppError) {
-          return response.status(err.statusCode).json({
+          console.log(err);
+          return response.json({
             status: 'error',
             message: err.message,
           });
@@ -87,7 +88,7 @@ class App {
     this.express.use(morgan('tiny'));
     this.express.use(express.urlencoded({ extended: false }));
     this.express.use(express.json());
-    // this.express.use(express.static('public'));
+    this.express.use('/files', express.static(uploadConfig.uploadsFolder));
     // this.express.use(favicon(process.cwd() + '/public/images/favicon.ico'));
   }
 }

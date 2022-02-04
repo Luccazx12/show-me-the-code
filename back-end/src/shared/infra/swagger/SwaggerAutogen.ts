@@ -1,6 +1,5 @@
 const swaggerAutogen = require('swagger-autogen')();
 const host = process.env.HOST;
-const port = process.env.PORT;
 
 export class SwaggerAutoGen {
   //   private outputFile: any = process.cwd() + "/src/swagger/swaggerTest.json";
@@ -11,17 +10,14 @@ export class SwaggerAutoGen {
 
   async execute() {
     const outputFile = './src/shared/infra/swagger/swagger.json';
-    const endPointsFiles = [
-      './src/shared/infra/http/routes/AuthRoutes.ts',
-      './src/shared/infra/http/routes/routes.ts',
-    ];
+    const endPointsFiles = ['./src/modules/**/infra/http/routes/**.ts'];
 
     const docs = {
       info: {
         title: 'TypeOrm_Postgre API',
         description: '...',
       },
-      host: `${host}:${port}`,
+      host: `${host}`,
       schemes: ['http'],
       securityDefinitions: {
         bearerAuth: {
@@ -43,15 +39,23 @@ export class SwaggerAutoGen {
         },
         {
           name: 'Users_auth',
-          description: 'Endpoints for adding pets to the directory',
+          description:
+            'Endpoints for getting information about Users with Authentication',
         },
         {
-          name: 'Products_auth',
-          description: 'Endpoints for updating pet information',
+          name: 'Tariffs_auth',
+          description:
+            'Endpoints for getting information about Tariffs with Authentication',
         },
         {
-          name: 'Categories_auth',
-          description: 'Endpoints for getting information about pets',
+          name: 'Plans_auth',
+          description:
+            'Endpoints for getting information about Plans with Authentication',
+        },
+        {
+          name: 'Roles_auth',
+          description:
+            'Endpoints for getting information about Roles with Authentication',
         },
         {
           name: 'Open Routes',
@@ -63,16 +67,16 @@ export class SwaggerAutoGen {
         },
         {
           name: 'Users',
-          description: 'Endpoints for adding pets to the directory',
+          description: 'Endpoints for getting information about Users',
         },
-        {
-          name: 'Products',
-          description: 'Endpoints for updating pet information',
-        },
-        {
-          name: 'Categories',
-          description: 'Endpoints for getting information about pets',
-        },
+        // {
+        //   name: 'Tariffs',
+        //   description: 'Endpoints for getting information about Tariffs',
+        // },
+        // {
+        //   name: 'Plans',
+        //   description: 'Endpoints for getting information about Plans',
+        // },
       ],
     };
 

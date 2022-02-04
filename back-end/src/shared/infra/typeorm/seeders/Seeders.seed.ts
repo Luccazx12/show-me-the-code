@@ -1,7 +1,7 @@
-import { Factory, Seeder } from "typeorm-seeding";
-import { Connection } from "typeorm";
-import { v4 as uuid } from "uuid";
-import { dateGmt } from "@shared/utils/DateGmt-3";
+import { Factory, Seeder } from 'typeorm-seeding';
+import { Connection } from 'typeorm';
+import { v4 as uuid } from 'uuid';
+import { dateGmt } from '@shared/utils/DateGmt-3';
 
 export default class InsertSeeders implements Seeder {
   public async run(factory: Factory, connection: Connection): Promise<any> {
@@ -10,11 +10,17 @@ export default class InsertSeeders implements Seeder {
       await connection
         .createQueryBuilder()
         .insert()
-        .into("seeders")
+        .into('seeders')
         .values([
           {
             id: uuid(),
-            name: "CreateRolesAndAdminUser",
+            name: 'RolePlanUserSeed',
+            created_at: date,
+            updated_at: date,
+          },
+          {
+            id: uuid(),
+            name: 'TariffsSeed',
             created_at: date,
             updated_at: date,
           },

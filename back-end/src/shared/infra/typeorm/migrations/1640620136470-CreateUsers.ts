@@ -30,11 +30,32 @@ export class CreateUsers1640620136470 implements MigrationInterface {
             isUnique: true,
           },
           {
+            name: 'avatar_url',
+            type: 'varchar',
+          },
+          {
+            name: 'city',
+            type: 'numeric',
+          },
+          {
+            name: 'state',
+            type: 'numeric',
+          },
+          {
+            name: 'description',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'activated',
             type: 'boolean',
           },
           {
             name: 'role_id',
+            type: 'uuid',
+          },
+          {
+            name: 'plan_id',
             type: 'uuid',
           },
           {
@@ -53,6 +74,13 @@ export class CreateUsers1640620136470 implements MigrationInterface {
             name: 'fk_users_role',
             columnNames: ['role_id'],
             referencedTableName: 'roles',
+            referencedColumnNames: ['id'],
+            onDelete: 'CASCADE',
+          },
+          {
+            name: 'fk_users_plan',
+            columnNames: ['plan_id'],
+            referencedTableName: 'plans',
             referencedColumnNames: ['id'],
             onDelete: 'CASCADE',
           },
