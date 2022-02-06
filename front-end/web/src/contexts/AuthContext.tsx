@@ -1,44 +1,38 @@
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { setCookie, parseCookies } from 'nookies';
 import Router from 'next/router';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
-//config
-import { buttons } from '../config/buttons';
+// config
+import buttons from '../config/buttons';
 
-//services
-import { api } from '../services/api';
+// services
+import api from '../services/api';
 import { planServices, tariffServices, userServices } from '../services';
 import { stateServices, cityServices } from '../services/external';
 
-//Interfaces
-import { IUser } from '../dtos/IUser';
-import { IPlan } from '../dtos/IPlan';
-import { ITariff } from '../dtos/ITariff';
-import { IToken } from '../dtos/IToken';
-import { IStates } from '../dtos/IStates';
-import { ICities } from '../dtos/ICities';
+// Interfaces
+import { IUser } from '../dtos/iUser';
+import { IPlan } from '../dtos/iPlan';
+import { ITariff } from '../dtos/iTariff';
+import { IToken } from '../dtos/iToken';
+import { IStates } from '../dtos/iStates';
+import { ICities } from '../dtos/iCities';
+import { IHeaders } from '../dtos/iHeaders';
 
 type AuthContextType = {
   isAuthenticated: boolean;
   user: IUser;
-  setUser: Dispatch<SetStateAction<IUser>>;
   plan: IPlan[];
   tariff: ITariff[];
-  signIn: (email: string, user: string) => Promise<void>;
+  signIn: (email: string, user: string) => Promise<Error | unknown>;
   states: IStates[];
   cities: ICities[];
 };
 
 export const AuthContext = createContext({} as AuthContextType);
 
-export function AuthProvider({ children }) {
+export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [plan, setPlan] = useState<IPlan[]>([]);
   const [states, setStates] = useState<IStates[]>([]);
@@ -56,18 +50,20 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function signIn(email: string, password: string) {
-    const request = await api.post('/users/auth/signin', {
-      email,
-      password,
-    });
-
     try {
-      const { token } = request.data;
-
-      //Setando no header das requisições o token
-      //para conseguirmos acessar as informações
-      //de usuário, planos e tarifas.
-      api.defaults.headers['authorization'] = `Bearer ${token}`;
+      const request = await userServices.signIn(email, password);
+      // Se tiver mensagem de erro eu instancio
+      // um erro para mandar mensagem de usuário inválido
+      // para a tela de login.
+      if (request.message) {
+        return new Error(request.message);
+      }
+      const { token } = request;
+      // Setando no header das requisições o token
+      // para conseguirmos acessar as informações
+      // de usuário, planos e tarifas.
+      const headerApi: IHeaders = api.defaults.headers;
+      headerApi.authorization = `Bearer ${token}`;
 
       // Pegando essas informações e setando no contexto para usar
       // em todas as páginas
@@ -81,24 +77,24 @@ export function AuthProvider({ children }) {
         maxAge: 60 * 60 * 1, // 1 hour
       });
 
-      //Rota /calculation
+      // Rota /calculation
       const firstRouter = buttons.navButtons[0].path;
       Router.push(firstRouter);
     } catch (error) {
-      throw new Error(error);
+      return new Error('Erro interno do servidor, tente novamente mais tarde.');
     }
   }
 
   async function getUserInfoAndCities(token: string): Promise<IUser> {
     try {
-      const decodedToken: IToken = jwt_decode(token);
-      const user = await userServices.getUserByToken(decodedToken);
+      const decodedToken: IToken = jwtDecode(token);
+      const userbyToken = await userServices.getUserByToken(decodedToken);
 
       // const state = parseInt(user.state);
       // Pegando todas as cidades do estado do usuário
-      const allCities = await cityServices.getAllCitiesByUf(user.state);
+      const allCities = await cityServices.getAllCitiesByUf(userbyToken.state);
       setCities(allCities);
-      return user;
+      return userbyToken;
     } catch (error) {
       userServices.logout();
     }
@@ -131,13 +127,7 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function getAllCitiesByUserUf(uf: number): Promise<ICities[]> {
-    try {
-    } catch (error) {
-      return error;
-    }
-  }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function getAllInfosAndSet(token?: string): void {
     getAllPlans().then(response => {
       setPlan(response);
@@ -154,12 +144,13 @@ export function AuthProvider({ children }) {
   }
 
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <AuthContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         states,
         cities,
         user,
-        setUser,
         plan,
         tariff,
         isAuthenticated,
@@ -169,4 +160,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
+};

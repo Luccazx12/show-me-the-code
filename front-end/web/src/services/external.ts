@@ -1,5 +1,5 @@
-//services
-import { api } from './api';
+// services
+import api from '@services/api';
 
 const getAllStates = async () => {
   try {
@@ -12,7 +12,7 @@ const getAllStates = async () => {
   }
 };
 
-//States Services
+// States Services
 const stateServices = {
   getAllStates,
 };

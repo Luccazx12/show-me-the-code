@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const withImages = require('next-images');
+
 const devApi = 'http://localhost:3002';
 const prodApi = 'http://localhost:3002';
 
 module.exports = withImages({
   images: {
     disableStaticImages: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
   publicRuntimeConfig: {
     apiUrl:

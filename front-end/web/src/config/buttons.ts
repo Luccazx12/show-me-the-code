@@ -20,7 +20,9 @@ const menuButtons = [
   },
 ];
 
-export const buttons = {
+const allButtons = {
   navButtons,
   menuButtons,
 };
+
+export default allButtons;

@@ -19,7 +19,18 @@ body{
   justify-content: center;
 }
 
-a > span {
+a > span, p > span, h3 > span {
   color: red;
+}
+
+.error {
+    position: relative;
+    animation: shake .1s linear;
+    animation-iteration-count: 3;
+}
+
+@keyframes shake {
+    0% { left: -5px; }
+    100% { right: -5px; }
 }
 `;

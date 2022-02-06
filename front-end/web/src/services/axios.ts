@@ -1,23 +1,24 @@
 import axios from 'axios';
 import { parseCookies } from 'nookies';
-import config from '../config/config';
+import appConfig from '@config/config';
 
-export function getAPIClient(ctx?: any) {
+import { IHeaders } from '@dtos/iHeaders';
+
+function getAPIClient(ctx?: unknown) {
   const { 'nextauth.token': token } = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: config.serverURL,
+    baseURL: appConfig.serverURL,
   });
 
-  api.interceptors.request.use(config => {
-    console.log(config);
-
-    return config;
-  });
+  api.interceptors.request.use(config => config);
 
   if (token) {
-    api.defaults.headers['authorization'] = `Bearer ${token}`;
+    const headerApi: IHeaders = api.defaults.headers;
+    headerApi.authorization = `Bearer ${token}`;
   }
 
   return api;
 }
+
+export default getAPIClient;

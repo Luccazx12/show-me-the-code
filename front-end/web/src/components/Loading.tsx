@@ -1,5 +1,5 @@
-import Spinner from 'react-spinner-material';
 import React from 'react';
+import Spinner from 'react-spinner-material';
 
 export default function Loading() {
   return (

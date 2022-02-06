@@ -17,7 +17,7 @@ export class EnsureAuthenticated {
       'Origin, Content-Type, Accept',
     );
 
-    const authHeader = request.headers['authorization'];
+    const authHeader = request.headers.authorization;
 
     if (!authHeader) {
       throw new AppError('JWT token is missing.', 401);

@@ -16,11 +16,11 @@ export class SigninService {
     });
 
     if (!email || !password) {
-      throw new AppError('Missing Information');
+      throw new AppError('Preencha todos os campos!');
     } else if (!user) {
-      throw new AppError('Email/password combination is incorrect');
+      throw new AppError('Email ou senha estão inválidos!');
     } else if (!(await bcrypt.compareSync(password, user.password))) {
-      throw new AppError('Email/password combination is incorrect');
+      throw new AppError('Email ou senha estão inválidos!');
     } else {
       var token = jwt.sign(
         {

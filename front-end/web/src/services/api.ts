@@ -1,3 +1,4 @@
-import { getAPIClient } from './axios';
+import getAPIClient from '@services/axios';
 
-export const api = getAPIClient();
+const api = getAPIClient();
+export default api;

@@ -9,7 +9,6 @@ export class PlanController {
     return response.json(plans);
   }
 
-  
   async deletePlan(request: Request, response: Response) {
     const { id } = request.params;
     const service = new DeletePlanService();

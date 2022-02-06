@@ -25,12 +25,11 @@ export class UpdateUserService {
     const roleRepo = getRepository(Role);
     const planRepo = getRepository(Plan);
 
-    if (username_path !== username && role !== 'Admin') {
+    if (username && username_path !== username && role !== 'Admin') {
       throw new AppError('Need Admin Role!', 401);
     }
 
     username_path = username_path.toLowerCase();
-
     const user = await repo.findOne({
       where: {
         username: username_path,

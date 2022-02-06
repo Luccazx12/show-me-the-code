@@ -1,24 +1,29 @@
-import { Fragment, useContext } from 'react';
+import React from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import { AuthContext } from '../contexts/AuthContext';
-import Img from '../components/Image';
 
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 
-// configs
+// next.config - Configs
 import config from '../config/config';
-const server = config.serverURL;
 // Array para rotas da nav,
 // com label e path (exibição e caminho)
-import { buttons } from '../config/buttons';
+import buttons from '../config/buttons';
 
-//services
+// Contexts
+import { AuthContext } from '../contexts/AuthContext';
+
+// Components
+import Img from './Image';
+
+// services
 import { userServices } from '../services';
 
+const server = config.serverURL;
+
 const NavBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = React.useContext(AuthContext);
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -46,14 +51,14 @@ const NavBar = () => {
                   <div className="ml-10 flex items-baseline space-x-4">
                     {buttons.navButtons.map((item, itemIdx) =>
                       itemIdx === 0 ? (
-                        <Fragment key={item.path}>
+                        <React.Fragment key={item.path}>
                           {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                           <Link href={item.path}>
                             <div className="cursor-pointer bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                               <span>{item.label}</span>
                             </div>
                           </Link>
-                        </Fragment>
+                        </React.Fragment>
                       ) : (
                         <Link href={item.path} key={item.path}>
                           <div className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
@@ -71,7 +76,10 @@ const NavBar = () => {
                     {user?.username.toUpperCase()}
                   </h1>
 
-                  <button className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <button
+                    type="button"
+                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  >
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
@@ -85,14 +93,14 @@ const NavBar = () => {
                             <span className="sr-only">Open user menu</span>
                             <Img
                               className="h-11 w-11 rounded-full"
-                              src={server + user?.avatar_url}
+                              src={`${server}${user?.avatar_url}`}
                               alt="Avatar do usuário"
                             />
                           </Menu.Button>
                         </div>
                         <Transition
                           show={open}
-                          as={Fragment}
+                          as={React.Fragment}
                           enter="transition ease-out duration-100"
                           enterFrom="transform opacity-0 scale-95"
                           enterTo="transform opacity-100 scale-100"
@@ -126,7 +134,7 @@ const NavBar = () => {
                                 onClick={() => logout()}
                                 className="block px-4 py-2 text-sm text-gray-700"
                               >
-                                Sign out
+                                Sair
                               </a>
                             </Menu.Item>
                           </Menu.Items>
@@ -154,14 +162,14 @@ const NavBar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {buttons.navButtons.map((item, itemIdx) =>
                 itemIdx === 0 ? (
-                  <Fragment key={item.path}>
+                  <React.Fragment key={item.path}>
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <Link href={item.path} key={item.path}>
                       <div className="cursor-pointer bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
                         <span>{item.label}</span>
                       </div>
                     </Link>
-                  </Fragment>
+                  </React.Fragment>
                 ) : (
                   <Link href={item.path} key={item.path}>
                     <div className="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
@@ -174,9 +182,9 @@ const NavBar = () => {
             <div className="pt-4 pb-3 border-t border-gray-700">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
-                  <Img
+                  <img
                     className="h-10 w-10 rounded-full"
-                    src={server + user?.avatar_url}
+                    src={`${server}${user?.avatar_url}`}
                     alt="Avatar do usuário"
                   />
                 </div>
@@ -188,7 +196,10 @@ const NavBar = () => {
                     {user?.email}
                   </div>
                 </div>
-                <button className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <button
+                  type="button"
+                  className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>

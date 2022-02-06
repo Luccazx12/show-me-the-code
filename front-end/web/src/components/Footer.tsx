@@ -116,7 +116,7 @@ const Footer = () => {
                     <li>
                       <a
                         className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy"
+                        href=""
                       >
                         Privacy Policy
                       </a>

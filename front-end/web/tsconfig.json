@@ -13,8 +13,19 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@config/*": ["./src/config/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@dtos/*": ["./src/dtos/*"],
+      "@pages": ["./src/pages/*"],
+      "@public/*": ["./public/*"],
+      "@services/*": ["./src/services/*"],
+      "@styles/*": ["./src/styles/*"]
+    }
   },
-  "include": ["**/*.ts", "**/*.tsx", "additional.d.ts", "src/components/Card.tsx]"],
+  "include": ["**/*.ts", "**/*.tsx", "additional.d.ts"],
   "exclude": ["node_modules", "next-env.d.ts"]
 }

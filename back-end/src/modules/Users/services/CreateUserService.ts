@@ -22,8 +22,8 @@ export class CreateUserService {
     const roleRepo = getRepository(Role);
     const planRepo = getRepository(Plan);
 
-    if (!name || !username || !password || !email) {
-      throw new AppError('Missing information');
+    if (!name || !username || !password || !email || !state || !city) {
+      throw new AppError('Preencha todos os campos');
     } else if (!admin || !role_id) {
       const userRole = await roleRepo.findOne({
         where: {
@@ -46,7 +46,7 @@ export class CreateUserService {
     const plan_id = noPlan.id;
 
     if (!(await roleRepo.findOne(role_id))) {
-      throw new AppError('Role does not exists!');
+      throw new AppError('Esse role não existe!');
     }
 
     username = username.toLowerCase();

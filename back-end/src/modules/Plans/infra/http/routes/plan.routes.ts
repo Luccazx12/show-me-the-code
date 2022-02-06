@@ -5,7 +5,7 @@ import { PlanController } from '@modules/Plans/infra/http/controllers/PlanContro
 
 //Middlewares
 import { EnsureAuthenticated } from '@modules/Users/infra/http/middlewares/ensureAuthenticated';
-import { CheckRole } from '@modules/Roles/infra/http/middlewares/checkRole';
+import { CheckRole } from '@modules/Roles/infra/http/middlewares/CheckRole';
 
 const routes = Router();
 
@@ -17,8 +17,9 @@ const checkAuth = new EnsureAuthenticated().checkAuth;
 // em determinada rota.
 const checkRole = new CheckRole().isAdmin;
 
-routes.get('/all', 
-/*
+routes.get(
+  '/all',
+  /*
  #swagger.auto = false
     #swagger.tags = ["Plans_auth"]
     #swagger.path = '/plans/all'
@@ -29,7 +30,9 @@ routes.get('/all',
     #swagger.produces = ['application/json']
     #swagger.consumes = ['application/json'] 
 */
-checkAuth, new PlanController().getAllPlans);
+  checkAuth,
+  new PlanController().getAllPlans,
+);
 
 routes.delete(
   '/:id',

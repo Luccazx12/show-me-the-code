@@ -1,10 +1,10 @@
 import React from 'react';
-import { AuthContext } from '../contexts/AuthContext';
-import { IPlan } from '../dtos/IPlan';
-import { planServices } from '../services';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
-import Img from '../components/Image';
 import Router from 'next/router';
+import { AuthContext } from '../contexts/AuthContext';
+import { IPlan } from '../dtos/iPlan';
+import { planServices } from '../services';
+import Img from './Image';
 
 interface IProp {
   css: string;
@@ -17,46 +17,48 @@ interface Props {
 }
 
 const Plan: React.FC<Props> = ({ plan, prop }) => {
-  const { user, setUser } = React.useContext(AuthContext);
+  const { user } = React.useContext(AuthContext);
 
-  const buyFunction = (id: string, plan_name: string) => {
-    try {
-      planServices.buyPlan(id, user).then(response => {
-        let ico: SweetAlertIcon = 'success';
-        let resp = `Plano ${plan_name} adquirido com sucesso!`;
+  Plan.defaultProps = {
+    prop: null,
+  };
 
-        if (response.message) {
-          ico = 'error';
-          resp = response.message;
-        }
-        const timer = 2000;
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: timer,
-          timerProgressBar: true,
-          didOpen: toast => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          },
-        });
-        Toast.fire({
-          icon: ico,
-          title: resp,
-        });
+  const buyFunction = (id: string, planName: string) => {
+    planServices.buyPlan(id, user.username).then(response => {
+      let ico: SweetAlertIcon = 'success';
+      let resp = `Plano ${planName} adquirido com sucesso!`;
 
-        setTimeout(() => {
-          //Renderizando novamente a página de planos
-          //na metade do tempo da mensagem
-          if (ico === 'success') {
-            Router.push('/plans');
-          }
-        }, timer / 2);
+      if (response.message) {
+        ico = 'error';
+        resp = response.message;
+      }
+      const timer = 1500;
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer,
+        timerProgressBar: true,
+        didOpen: toast => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
       });
-    } catch (error) {
-      console.log(error);
-    }
+      Toast.fire({
+        icon: ico,
+        title: resp,
+      });
+
+      setTimeout(() => {
+        // Renderizando novamente a página de planos
+        // na metade do tempo da mensagem
+        if (ico === 'success') {
+          Router.ready(() => {
+            Router.reload();
+          });
+        }
+      }, timer / 1.5);
+    });
   };
 
   return (
@@ -77,17 +79,18 @@ const Plan: React.FC<Props> = ({ plan, prop }) => {
           <div className="font-bold text-red-600 mt-1">
             <h3>(Plano Atual)</h3>
           </div>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
       <div className="px-2 pt-1 pb-6">
-        <button
-          onClick={() => buyFunction(plan?.id, plan?.name)}
-          className="bg-transparent hover:bg-gray-800 text-gray-800 hover:text-white py-1 px-4 border border-gray-800 hover:border-transparent rounded"
-        >
-          Comprar
-        </button>
+        {prop?.actualPlan ? null : (
+          <button
+            type="button"
+            onClick={() => buyFunction(plan?.id, plan?.name)}
+            className="bg-transparent hover:bg-gray-800 text-gray-800 hover:text-white py-1 px-4 border border-gray-800 hover:border-transparent rounded"
+          >
+            Comprar
+          </button>
+        )}
       </div>
     </div>
   );

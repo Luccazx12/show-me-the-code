@@ -10,7 +10,7 @@ export type UserRequest = {
   description?: string;
   plan_id?: string;
   activated?: boolean;
-  // Utilizado só em alguns serviços 
+  // Utilizado só em alguns serviços
   // em estruturas de decisões.
   admin?: boolean;
   username_path?: string;
