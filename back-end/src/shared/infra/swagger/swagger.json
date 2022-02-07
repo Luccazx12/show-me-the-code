@@ -477,7 +477,7 @@
     "/users/{username}": {
       "get": {
         "tags": [
-          "Users"
+          "Users_auth"
         ],
         "description": "",
         "consumes": [

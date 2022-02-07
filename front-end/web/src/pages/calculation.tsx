@@ -369,8 +369,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     };
   }
 
-  await apiClient.get('/users');
-
   return {
     props: {},
   };

@@ -29,7 +29,7 @@ export class CheckRole {
           }
         }
       } else {
-        throw new AppError('Need ADMIN Role!');
+        throw new AppError('Need ADMIN Role!', 401);
       }
     } catch (err) {
       return response.status(500).json(err);

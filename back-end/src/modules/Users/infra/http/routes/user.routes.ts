@@ -270,7 +270,7 @@ routes.get(
 routes.get(
   '/:username',
   /*   
-#swagger.tags = ["Users"]
+#swagger.tags = ["Users_auth"]
 #swagger.path = '/users/{username}'
 #swagger.method = 'get'
 #swagger.produces = ['application/json']

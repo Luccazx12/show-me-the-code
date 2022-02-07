@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withImages = require('next-images');
 
-const devApi = 'http://localhost:3002';
-const prodApi = 'http://localhost:3002';
+const devApi = process.env.APIDEV_URL;
+const prodApi = process.env.APIPROD_URL;
 
 module.exports = withImages({
   images: {

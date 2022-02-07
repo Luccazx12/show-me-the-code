@@ -5,7 +5,7 @@ import { PlanController } from '@modules/Plans/infra/http/controllers/PlanContro
 
 //Middlewares
 import { EnsureAuthenticated } from '@modules/Users/infra/http/middlewares/ensureAuthenticated';
-import { CheckRole } from '@modules/Roles/infra/http/middlewares/CheckRole';
+import { CheckRole } from '@modules/Roles/infra/http/middlewares/checkRole';
 
 const routes = Router();
 
