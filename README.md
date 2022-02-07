@@ -10,6 +10,7 @@ This application was requested by the company LolDesign, where a customer can ca
 
 - Nodejs and NPM
 - Docker
+- docker-compose
 
 ### How to execute front web, back-end and database
 

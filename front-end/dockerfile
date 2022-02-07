@@ -1,0 +1,26 @@
+FROM node:lts as dependencies
+RUN mkdir -p /home/app/front-end/node_modules && chown -R node:node /home/app/front-end
+
+WORKDIR /home/app/front-end
+
+COPY package*.json ./
+RUN npm install
+
+FROM node:lts as builder
+WORKDIR /home/app/front-end
+COPY . .
+COPY --from=dependencies /home/app/front-end/node_modules ./node_modules
+RUN npm run build
+
+FROM node:lts as runner
+WORKDIR /home/app/front-end/
+ENV NODE_ENV production
+
+COPY --from=builder /home/app/front-end/next.config.js ./
+COPY --from=builder /home/app/front-end/public ./public
+COPY --from=builder /home/app/front-end/.next ./.next
+COPY --from=builder /home/app/front-end/node_modules ./node_modules
+COPY --from=builder /home/app/front-end/package.json ./package.json
+
+EXPOSE 3000
+CMD ["npm", "start"]

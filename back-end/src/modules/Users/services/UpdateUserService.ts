@@ -4,7 +4,7 @@ import { Role } from '@modules/Roles/infra/typeorm/entities/Role';
 import { dateGmt } from '@shared/utils/DateGmt-3';
 import AppError from '@shared/errors/AppError';
 import { Plan } from '@modules/Plans/infra/typeorm/entities/Plan';
-import { UserRequest } from '@modules/Users/dtos/UserRequest';
+import { UserRequest } from '@modules/Users/types/UserRequest';
 
 export class UpdateUserService {
   async execute({
