@@ -8,7 +8,7 @@ This application was requested by the company LolDesign, where a customer can ca
 
 ### Necessary tools to execute this project:
 
-- Nodejs and NPM
+- Node and NPM
 - Docker
 - docker-compose
 
