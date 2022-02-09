@@ -35,7 +35,7 @@ $ docker pull postgres
 In that folder, run:
 
 ```
- cd ./back-end
+ cd ./back-end && npm install
 ```
 
 1 - Migrations:
