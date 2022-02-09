@@ -29,7 +29,7 @@ $ npm run dev
 #### To run our database, let's create a container, type the command:
 
 ```bash
-$ docker run -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
+$ docker run --name db-postgres -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
 ```
 
 Flag explanation
