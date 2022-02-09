@@ -34,6 +34,10 @@ $ docker pull postgres
 
 In that folder, run:
 
+```
+ cd ./back-end
+```
+
 1 - Migrations:
 
 ```bash
