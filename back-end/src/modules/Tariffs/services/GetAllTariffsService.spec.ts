@@ -1,12 +1,19 @@
 import AppError from '@shared/errors/AppError';
 import { GetAllTariffsService } from './GetAllTariffsService';
-import { ITariff } from '@modules/Roles/types/iTariff';
+import { ITariff } from '@modules/Tariffs/types/iTariff';
 
-describe('DeletePlanById', () => {
-  const allTariffs = new GetAllTariffsService();
+
+let allTariffs: GetAllTariffsService;
+
+describe('GetAllTariffs', () => {
+  beforeEach(() => {
+    //Faltando implementar os fakes repositories
+    //Faltando implementar os fakes hashProviders
+    allTariffs = new GetAllTariffsService();
+  });
 
   it('should be able to get all tariffs', async () => {
-    const findedTariffs: ITariff[] = await allTariffs.execute();
+    const findedTariffs: ITariff = await allTariffs.execute();
 
     expect(findedTariffs);
   });

@@ -17,7 +17,7 @@ export class CreateUserService {
     role_id,
     avatar_url,
     admin,
-  }: UserRequest): Promise<AppError | User> {
+  }: UserRequest): Promise<User | AppError> {
     const userRepo = getRepository(User);
     const roleRepo = getRepository(Role);
     const planRepo = getRepository(Plan);

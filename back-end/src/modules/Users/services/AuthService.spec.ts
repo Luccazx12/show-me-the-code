@@ -2,9 +2,16 @@ import AppError from '@shared/errors/AppError';
 import { SigninService } from './AuthService';
 import { GetByUsernameService } from './GetByUsernameService';
 
+let authenticateUser: SigninService;
+let findUserByUsername: GetByUsernameService;
+
 describe('AuthService', () => {
-  const authenticateUser = new SigninService();
-  const findUserByUsername = new GetByUsernameService();
+  beforeEach(() => {
+    //Faltando implementar os fakes repositories
+    //Faltando implementar os fakes hashProviders
+    authenticateUser = new SigninService();
+    findUserByUsername = new GetByUsernameService();
+  });
 
   it('should be able to authenticate user', async () => {
     const user = await findUserByUsername.execute('admin');
