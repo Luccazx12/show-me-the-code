@@ -1,9 +1,8 @@
 import { UpdateUserService } from '@modules/Users/services/UpdateUserService';
-import { v4 as uuid } from 'uuid';
 
 let updateUser: UpdateUserService;
 
-describe('CreateUser', () => {
+describe('UpdateUser', () => {
   beforeEach(() => {
     //Faltando implementar os fakes repositories
     //Faltando implementar os fakes hashProviders
@@ -13,9 +12,9 @@ describe('CreateUser', () => {
   it('should be able to update a user', async () => {
     const user = await updateUser.execute({
       username_path: 'admin',
-      description: "1234"
+      description: '1234',
     });
 
-    expect(user.description).toBe('1234')
+    expect(user.description).toBe('1234');
   });
 });

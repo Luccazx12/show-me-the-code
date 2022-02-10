@@ -20,7 +20,7 @@ export class UpdateUserService {
     description,
     plan_id,
     activated,
-  }: UserRequest): Promise<Error | User> {
+  }: UserRequest): Promise<User> {
     const repo = await getRepository(User);
     const roleRepo = getRepository(Role);
     const planRepo = getRepository(Plan);

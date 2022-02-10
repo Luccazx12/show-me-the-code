@@ -8,12 +8,11 @@ let allPlans: GetAllPlansService;
 let deletePlans: DeletePlanService;
 
 describe('DeletePlanById', () => {
-  
   beforeEach(() => {
     //Faltando implementar os fakes repositories
     //Faltando implementar os fakes hashProviders
-     allPlans = new GetAllPlansService();
-   deletePlans = new DeletePlanService();
+    allPlans = new GetAllPlansService();
+    deletePlans = new DeletePlanService();
   });
   it('should be able to delete a plan by id', async () => {
     const findedPlans: IPlan[] = await allPlans.execute();

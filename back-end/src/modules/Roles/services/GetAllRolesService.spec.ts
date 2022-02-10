@@ -1,17 +1,23 @@
 import AppError from '@shared/errors/AppError';
 import { GetAllRolesService } from './GetAllRolesService';
-import { IRoles } from '@modules/Roles/types/iRoles';
+import { IRole } from '@modules/Roles/types/iRole';
 
-describe('DeletePlanById', () => {
-  const allRoles = new GetAllRolesService();
+let allRoles: GetAllRolesService;
 
-  it('should be able to get all roles', async () => {
-    const findedRoles: IRoles[] = await allRoles.execute();
-
-    expect(findedRoles)
+describe('GetAllRoles', () => {
+  beforeEach(() => {
+    //Faltando implementar os fakes repositories
+    //Faltando implementar os fakes hashProviders
+    allRoles = new GetAllRolesService();
   });
 
-  it('should not be able to find a plan for delete', async () => {
-    await expect(allRoles.execute()).rejects.toBeInstanceOf(AppError); //ID que randômico que não existe no bd...
+  it('should be able to get all roles', async () => {
+    const findedRoles: IRole[] = await allRoles.execute();
+
+    expect(findedRoles);
+  });
+
+  it('should not be able to find all roles', async () => {
+    await expect(allRoles.execute()).rejects.toBeInstanceOf(AppError);
   });
 });

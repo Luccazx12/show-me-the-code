@@ -7,6 +7,7 @@
     "start": "node dist/shared/infra/http/server.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "test": "cross-env NODE_ENV=test jest",
+    "jest": "jest",
     "swagger-autogen": "ts-node-dev --transpile-only src/shared/infra/swagger/swagger-autogen.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",

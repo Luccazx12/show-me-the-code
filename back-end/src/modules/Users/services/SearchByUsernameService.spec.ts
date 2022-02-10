@@ -9,14 +9,14 @@ describe('SearchByUsername', () => {
     //Faltando implementar os fakes hashProviders
     searchByUsername = new SearchByUsernameService();
   });
-  it('should be able to find a user by username', async () => {
+  it('should be able to search a user by username', async () => {
     // Traz todos os usuários que tem o username começando com adm...
     const searched = await searchByUsername.execute('adm');
 
     expect(searched);
   });
 
-  it('should not be able to find a user by username', async () => {
+  it('should not be able to search a user by username', async () => {
     await expect(
       searchByUsername.execute('wrong-username'),
     ).rejects.toBeInstanceOf(AppError);

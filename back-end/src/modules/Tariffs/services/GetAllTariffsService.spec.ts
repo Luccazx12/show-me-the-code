@@ -1,7 +1,5 @@
 import AppError from '@shared/errors/AppError';
 import { GetAllTariffsService } from './GetAllTariffsService';
-import { ITariff } from '@modules/Tariffs/types/iTariff';
-
 
 let allTariffs: GetAllTariffsService;
 
@@ -13,7 +11,7 @@ describe('GetAllTariffs', () => {
   });
 
   it('should be able to get all tariffs', async () => {
-    const findedTariffs: ITariff = await allTariffs.execute();
+    const findedTariffs = await allTariffs.execute();
 
     expect(findedTariffs);
   });
