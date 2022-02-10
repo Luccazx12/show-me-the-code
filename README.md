@@ -34,6 +34,13 @@ $ docker pull postgres
 
 In that folder, run:
 
+<<<<<<< HEAD
+=======
+```
+ cd ./back-end && npm install
+```
+
+>>>>>>> acc292b4e7d75ec30b29ca30eb42a75dff56803b
 1 - Migrations:
 
 ```bash

@@ -2,6 +2,24 @@
 
 API developed with express (Nodejs) in typescript.
 
+
+### To run our database, let's create a container, type the command:
+
+```bash
+$ docker run --name db-postgres -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
+```
+
+Flag explanation
+
+(-p) is where we indicate a local port and which port it should redirect to
+
+(-v) is to set where the database information will be stored
+
+(-e) is the password to access our database
+
+(-d) is so that our terminal doesn't get stuck in the execution of the container
+
+
 ### How to run
 
 (after execute the migrations and seeders)
@@ -26,17 +44,6 @@ $ npm run start
 $ npm run dev
 ```
 
-#### To run our database, let's create a container, type the command:
-
-```bash
-$ docker run -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
-```
-
-Flag explanation
-(-p) is where we indicate a local port and which port it should redirect to
-(-v) is to set where the database information will be stored
-(-e) is the password to access our database
-(-d) is so that our terminal doesn't get stuck in the execution of the container
 
 ## Documentation
 
