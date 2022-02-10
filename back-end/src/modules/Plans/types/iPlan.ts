@@ -1,4 +1,4 @@
-export default interface IPlan {
+export interface IPlan {
     id: string; //(uuid)
     name: string;
     description: string;
@@ -8,5 +8,4 @@ export default interface IPlan {
     activated: boolean;
     created_at: Date;
     updated_at: Date
-
 }

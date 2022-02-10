@@ -1,12 +1,12 @@
 export type UserRequest = {
-  name: string;
-  username: string;
+  name?: string;
+  username?: string;
   password?: string;
-  email: string;
-  state: number;
-  city: number;
-  role_id: string;
-  avatar_url: string;
+  email?: string;
+  state?: number;
+  city?: number;
+  role_id?: string;
+  avatar_url?: string;
   description?: string;
   plan_id?: string;
   activated?: boolean;
