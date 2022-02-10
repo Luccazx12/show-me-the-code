@@ -8,7 +8,7 @@ This application was requested by the company LolDesign, where a customer can ca
 
 ### Necessary tools to execute this project:
 
-- Node and NPM
+- Nodejs and NPM
 - Docker
 - docker-compose
 
@@ -33,10 +33,6 @@ $ docker pull postgres
 #### Second, run the migrations and seeders to create the tables and populate our database:
 
 In that folder, run:
-
-```
- cd ./back-end
-```
 
 1 - Migrations:
 

@@ -33,13 +33,9 @@ $ docker run -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_
 ```
 
 Flag explanation
-
 (-p) is where we indicate a local port and which port it should redirect to
-
 (-v) is to set where the database information will be stored
-
 (-e) is the password to access our database
-
 (-d) is so that our terminal doesn't get stuck in the execution of the container
 
 ## Documentation

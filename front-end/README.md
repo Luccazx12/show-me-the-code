@@ -4,15 +4,7 @@ Nextjs is a react framework it offers server side rendering, static website gene
 
 ## How to execute
 
-2 - First, install the application dependencies:
-
-```bash
-npm install
-# or
-yarn install
-```
-
-2 - Second, build the application:
+1 - First, build the application:
 
 ```bash
 npm run build
