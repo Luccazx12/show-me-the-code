@@ -5,7 +5,7 @@ import { GetByUsernameService } from './GetByUsernameService';
 let authenticateUser: SigninService;
 let findUserByUsername: GetByUsernameService;
 
-describe('AuthService', () => {
+describe('AuthenticateUser', () => {
   beforeEach(() => {
     //Faltando implementar os fakes repositories
     //Faltando implementar os fakes hashProviders
@@ -33,7 +33,7 @@ describe('AuthService', () => {
     );
 
     expect(auth).toHaveProperty('token');
-    expect(auth).toEqual(user);
+    expect(auth.user).toEqual(user);
   });
 
   it('should not be able to authenticate with wrong passowrd', async () => {
