@@ -52,3 +52,4 @@ I used swagger to document the API, so just enter the address:
 `http://localhost:3002/docs`
 
 to view and use of all routes.
+

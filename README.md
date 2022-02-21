@@ -63,3 +63,4 @@ $ npm run seed:run
 ### And finally... Run process with docker
 
 It's very easy, just run the command: `$ sudo docker-compose up` in the current directory.
+
