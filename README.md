@@ -32,6 +32,16 @@ $ docker pull postgres
 
 **Remember to rename `.env.sample` to `.env` to be able to run the application.**
 
+### Creating database 'bdcrud' in postgres:
+
+```bash
+docker run --name postgres -p 2222:2222 -v /dbdata:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
+```
+
+```bash
+docker exec postgres psql -U postgres -c "CREATE DATABASE bdcrud";
+```
+
 ### Run process with docker
 
 It's very easy, just run the command: `$ sudo docker-compose up` in the current directory.
