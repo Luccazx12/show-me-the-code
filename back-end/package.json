@@ -10,11 +10,11 @@
     "jest": "jest",
     "swagger-autogen": "ts-node-dev --transpile-only src/shared/infra/swagger/swagger-autogen.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
-    "seed:config": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js config",
-    "seed:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed",
-    "schema:drop": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
-    "schema:sync": "ts-node  -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:sync"
+    "typeorm": "node -r tsconfig-paths/register ./node_modules/.bin/typeorm",
+    "seed:config": "node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js config",
+    "seed:run": "node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed",
+    "schema:drop": "node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
+    "schema:sync": "node  -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:sync"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

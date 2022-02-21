@@ -9,12 +9,12 @@ const devConfig = [
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     database: process.env.POSTGRES_DATABASE,
-    entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
-    migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
-    seeds: ['./src/shared/infra/typeorm/seeders/*.ts'],
-    factories: ['./src/shared/infra/typeorm/factories/*.ts'],
+    entities: [__dirname + '/src/modules/**/infra/typeorm/entities/*.ts'],
+    migrations: [__dirname + '/src/shared/infra/typeorm/migrations/*.ts'],
+    seeds: [__dirname + '/src/shared/infra/typeorm/seeders/*.ts'],
+    factories: [__dirname + '/src/shared/infra/typeorm/factories/*.ts'],
     cli: {
-      migrationsDir: './src/shared/infra/typeorm/migrations',
+      migrationsDir: __dirname + '/src/shared/infra/typeorm/migrations',
     },
   },
 ];
@@ -28,12 +28,12 @@ const testConfig = [
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     database: process.env.POSTGRES_DATABASE,
-    entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
-    migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
-    seeds: ['./src/shared/infra/typeorm/seeders/*.ts'],
+    entities: [__dirname + '/src/modules/**/infra/typeorm/entities/*.ts'],
+    migrations: [__dirname + '/src/shared/infra/typeorm/migrations/*.ts'],
+    seeds: [__dirname + '/src/shared/infra/typeorm/seeders/*.ts'],
     factories: ['./src/shared/infra/typeorm/factories/*.ts'],
     cli: {
-      migrationsDir: './src/shared/infra/typeorm/migrations',
+      migrationsDir:  __dirname + '/src/shared/infra/typeorm/migrations',
     },
   },
 ];
@@ -47,15 +47,15 @@ const prodConfig = [
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     database: process.env.POSTGRES_DATABASE,
-    entities: ['./dist/modules/**/infra/typeorm/entities/*.js'],
-    migrations: ['./dist/shared/infra/typeorm/migrations/*.js'],
-    seeds: ['./dist/shared/infra/typeorm/seeders/*.js'],
-    factories: ['./dist/shared/infra/typeorm/factories/*.js'],
+    entities: [__dirname + '/dist/modules/**/infra/typeorm/entities/*.js'],
+    migrations: [__dirname + '/dist/shared/infra/typeorm/migrations/*.js'],
+    seeds: [__dirname + '/dist/shared/infra/typeorm/seeders/*.js'],
+    factories: [__dirname + '/dist/shared/infra/typeorm/factories/*.js'],
     cli: {
-      migrationsDir: './dist/shared/infra/typeorm/migrations',
+      migrationsDir: __dirname + '/dist/shared/infra/typeorm/migrations',
     },
-  },
-];
+  }
+  ];
 
 if (process.env.NODE_ENV === 'development') {
   module.exports = devConfig;
