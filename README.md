@@ -30,12 +30,18 @@ If you don't have postgres, which is the database we will use, please use the co
 $ docker pull postgres
 ```
 
-#### Second, run the migrations and seeders to create the tables and populate our database:
+**Remember to rename `.env.sample` to `.env` to be able to run the application.**
+
+### Run process with docker
+
+It's very easy, just run the command: `$ sudo docker-compose up` in the current directory.
+
+### Run the migrations and seeders to create the tables and populate our database:
 
 In that folder, run:
 
 ```
- cd ./back-end && npm install
+ cd ./back-end && npm install && npm run build
 ```
 
 1 - Migrations:
@@ -57,10 +63,3 @@ or
 
 $ npm run seed:run
 ```
-
-**Remember to rename `.env.sample` to `.env` to be able to run the application.**
-
-### And finally... Run process with docker
-
-It's very easy, just run the command: `$ sudo docker-compose up` in the current directory.
-
