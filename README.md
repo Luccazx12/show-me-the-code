@@ -39,7 +39,12 @@ docker run --name postgres -p 2222:2222 -v /dbdata:/var/lib/postgresql/data -e P
 ```
 
 ```bash
-docker exec postgres psql -U postgres -c "CREATE DATABASE bdcrud";
+docker exec postgres psql -U postgres -c "CREATE DATABASE bdcrud"
+```
+
+#### Stopping the container and removing it
+```bash
+docker rm postgres && docker rm postgres
 ```
 
 ### Run process with docker
