@@ -17,17 +17,17 @@ This application was requested by the company LolDesign, where a customer can ca
 #### First, pull the back-end and front-end images for the project with docker
 
 ```bash
-$ sudo docker pull luccazx12/nodejs-typeorm:latest
+sudo docker pull luccazx12/nodejs-typeorm:latest
 ```
 
 ```bash
-$ sudo docker pull luccazx12/nextjs:latest
+sudo docker pull luccazx12/nextjs:latest
 ```
 
 If you don't have postgres, which is the database we will use, please use the command:
 
 ```bash
-$ docker pull postgres
+docker pull postgres
 ```
 
 **Remember to rename `.env.sample` to `.env` to be able to run the application.**
@@ -62,19 +62,19 @@ In that folder, run:
 1 - Migrations:
 
 ```bash
-$ yarn typeorm migration:run
+yarn typeorm migration:run
 
 or
 
-$ npm run typeorm migration:run
+npm run typeorm migration:run
 ```
 
 2 - Seeders:
 
 ```bash
-$ yarn seed:run
+yarn seed:run
 
 or
 
-$ npm run seed:run
+npm run seed:run
 ```
